@@ -1,17 +1,33 @@
 <html>
+    <div class ="container-fluid">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+   
 <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+   
 <style>
   .red-text {
     color: red;
+      font-family: Lato, Monospace;
+      text-align: center;
+      font-size: 80px;
+  }
+.black-text {
+    color: black;
   }
 
   h1 {
     font-family: Lato, Monospace;
       text-align: center;
-       font-size: 80px;
+      font-size: 80px;
   }
 
- 
+ h2 {
+    font-family: Lato, Monospace;
+      text-align: center;
+      font-size: 40px;
+  }
+
+  
 div.form
 {
     display: block;
@@ -51,23 +67,29 @@ form
     padding: 0;
 }
 </style>
+<div class="container-fluid">
 
-<h1 class="red-text">QuickAtt</h1>
+ <h1 class="red-text">QuickAtt</h1>
+    <h2 class="black-text">New User</h2>
 
 <div class="login_div">
-<form class ="login_form" action="includes/quickatt_login.php" method = "post">
+   
+<form class ="login_form" action="includes/quickatt_register.php" method = "post">
     
   <input type="text" required placeholder="Email" name="email" required="required"><br>
     <br>
-    <input type="password" required placeholder="Password" name="password" required="required"><br>
+    <input type="text" required placeholder="First Name" name="fname" required="required"><br>
     <br>
-    <a href='https://quickatt.000webhostapp.com/new_user.html'>
-    New User
-  </a>
+    <input type="text" required placeholder="Last Name" name="lname" required="required"><br>
+    <br>
+    <input type="password" required placeholder="ID #" name="id" required=" required"><br>
+    <br>
+    <input type="password" required placeholder="Password" name="password" required="required"><br>
+    
+    <br>
+    <label><input type="radio" name="permission" value = "Student"> Student</label>
     &nbsp;&nbsp;&nbsp;&nbsp;
-    <a href='https://quickatt.000webhostapp.com/forgot_password.html'>
-    Forgot Passoword
-  </a>
+    <label><input type="radio" name="permission" value = "Faculty"> Faculty</label>
     <br>
     <br>
   <button type="submit">Submit</button>
@@ -76,6 +98,7 @@ form
      
 </div>
 
- 
+  </div>
+</div>
 
 </html>
