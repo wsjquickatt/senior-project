@@ -1,0 +1,81 @@
+<html>
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+<style>
+  .red-text {
+    color: red;
+  }
+
+  h1 {
+    font-family: Lato, Monospace;
+      text-align: center;
+       font-size: 80px;
+  }
+
+ 
+div.form
+{
+    display: block;
+    text-align: center;
+}
+form
+{
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+.login_div {
+    font-family: Lato, Monospace;
+    position: absolute;
+    text-align: center;
+
+    width: 300px;
+    height: 300px;
+
+    /* Center form on page horizontally & vertically */
+    top: 50%;
+    left: 50%;
+    margin-top: -150px;
+    margin-left: -150px;
+}
+
+.login_form {
+    width: 300px;
+    height: 300px;
+    text-align: center;
+
+    background: white;
+    border-radius: 10px;
+
+    margin: 0;
+    padding: 0;
+}
+</style>
+
+<h1 class="red-text">QuickAtt</h1>
+
+<div class="login_div">
+<form class ="login_form" action="includes/quickatt_login.php" method = "post">
+    
+  <input type="text" required placeholder="Email" name="email" required="required"><br>
+    <br>
+    <input type="password" required placeholder="Password" name="password" required="required"><br>
+    <br>
+    <a href='https://quickatt.000webhostapp.com/new_user.html'>
+    New User
+  </a>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <a href='https://quickatt.000webhostapp.com/forgot_password.html'>
+    Forgot Password
+  </a>
+    <br>
+    <br>
+  <button type="submit">Submit</button>
+
+</form>
+     
+</div>
+
+ 
+
+</html>
