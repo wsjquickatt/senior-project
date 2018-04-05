@@ -1,4 +1,0 @@
-<?php
-//change attendance status
-
-?>
