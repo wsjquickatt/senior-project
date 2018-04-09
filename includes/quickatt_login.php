@@ -4,7 +4,7 @@ session_start();
 
 <?php
 	include "databaseinfo.php";
-	$con = mysqli_connect($server, $login, $password, $dbname); //connect to DB
+	//$con = mysqli_connect($server, $login, $password, $dbname); //connect to DB
 	
 
 	$email = $_POST["email"];
@@ -22,6 +22,8 @@ session_start();
 	$pwd_DB = $row2['pwd'];
 	$role_id = $row1['role_id'];
 	$user_id = $row1['user_id'];
+	$fn = $row1['firstname'];
+	$ln = $row1['lastname'];
 	
 		if($email_DB == $email)
 		{
@@ -49,8 +51,10 @@ session_start();
 					echo "<h3> Student login </h3>";
 					$_SESSION["roleid"] = 3; // set session var role id
 					$_SESSION["userid"] = $user_id; //set session var user_id
+					$_SESSION["first"] = $fn;
+					$_SESSION["last"] = $ln;
 					echo "<br>";
-					echo "<a href='homepage.html'> Proceed to homepage</a><br>"; //for testing
+					echo "<a href='student_attend.html'> Proceed to homepage</a><br>"; //for testing
 				}
 			}
 
