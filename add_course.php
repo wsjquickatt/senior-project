@@ -24,14 +24,14 @@ $(function(){
 <form class ="login_form" action="includes/quickatt_classadd.php" method = "post">
     
  
-    <input type="text" required placeholder="User ID #" name="userid"required=" required"><br>
+    <input class="form-control input-sm" type="text" required placeholder="User ID #" name="userid"required=" required"><br>
     <br>
-    <input type="text" required placeholder="Course ID" name="course_id" required="required"><br>
+    <input class="form-control input-sm" type="text" required placeholder="Course ID" name="course_id" required="required"><br>
     <br>
-    <input type="text" required placeholder="Section ID" name="section_id" required="required"><br>
+    <input class="form-control input-sm" type="text" required placeholder="Section ID" name="section_id" required="required"><br>
    
     <br>
-  <button type="submit">Submit</button>
+  <button class="btn btn-primary" type="submit">Submit</button>
 
 </form>
      
