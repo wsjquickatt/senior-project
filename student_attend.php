@@ -6,7 +6,9 @@ session_start();
 <body>
 
 <div class="container-fluid">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+<!--     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+ -->    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
 
     <style>
@@ -81,44 +83,42 @@ session_start();
         <h2 class="black-text">Select Course to Take Attendance</h2>
        
 <! TEST FORM to add course. needs variables for fname,lname, course, section, and password to implement >    
-               
-        <div class="login_form">
-        <br>
-        <form action="QR.html" method="post">
+        <div class="d-flex justify-content-center">
+            <div class="login_form">
+            <br>
+            <form action="QR.html" method="post">
+        	        <select name="course_id" required="required">
+        			<option selected value="">---Please Select a Course---</option>
+                    <!Need to change and query from STUDENT_COURSE TABLE>   
+        				<?php
 
-	        <select name="course_id" required="required">
-			<option selected value="">---Please Select a Course---</option>
-            <!Need to change and query from STUDENT_COURSE TABLE>   
-				<?php
-
-				include "includes/databaseinfo.php";
-				$conn = mysqli_connect($server, $login, $password, $dbname);
+        				include "includes/databaseinfo.php";
+        				$conn = mysqli_connect($server, $login, $password, $dbname);
 
 
-				$class_query = "select * from classes";
-				$result = $conn->query($class_query);
-				while($row = mysqli_fetch_array($result)){
-				$c_id = $row['cid'];
-				$course_id = $row['course_id'];
-				$s_id = $row['section_id'];
-				//submit multiple variable 
-				echo "<option value='$c_id, $course_id, $s_id'> $course_id - $s_id</option>\n";
-				}
-				$conn->close();
-				?>
-	                
-			</select>
-			<br>
-	        <br>
-	            <center><input class="form" type="submit"/></center>
-	    </form>
-
-		</div>
+        				$class_query = "select * from classes";
+        				$result = $conn->query($class_query);
+        				while($row = mysqli_fetch_array($result)){
+        				$c_id = $row['cid'];
+        				$course_id = $row['course_id'];
+        				$s_id = $row['section_id'];
+        				//submit multiple variable 
+        				echo "<option value='$c_id, $course_id, $s_id'> $course_id - $s_id</option>\n";
+        				}
+        				$conn->close();
+        				?>
+        	                
+        			</select>
+        			<br>
+        	        <br>
+    	            <center><input class="form" type="submit"/></center>
+    	    </form>
+    		</div>
+        </div>
     </div>
 </div>
 
 <center><a href= "index.html">GO BACK TO LOGIN PAGE</a><br><br></center>
-<center><a href= "QR.html">GO TO QR READER PAGE </a><br><br></center>
 <center><p>MAKE A QR CODE: <a href= "http://goqr.me/" target="_blank"> http://goqr.me/</a></p><br><br></center>
 
 </body>

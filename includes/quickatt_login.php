@@ -4,7 +4,7 @@ session_start();
 
 <?php
 	include "databaseinfo.php";
-	$con = mysqli_connect($server, $login, $password, $dbname); //connect to DB
+	//$con = mysqli_connect($server, $login, $password, $dbname); //connect to DB
 	
 
 	$email = $_POST["email"];
@@ -22,6 +22,8 @@ session_start();
 	$pwd_DB = $row2['pwd'];
 	$role_id = $row1['role_id'];
 	$user_id = $row1['user_id'];
+	$fn = $row1['firstname'];
+	$ln = $row1['lastname'];
 	
 		if($email_DB == $email)
 		{
@@ -41,32 +43,22 @@ session_start();
 					echo "<h3> Staff login </h3>";
 					$_SESSION["roleid"] = 2; // set session var role id
 					$_SESSION["userid"] = $user_id; //set session var user_id
-<<<<<<< HEAD
 
 					header('Location: ../prof_set.php');
 					// echo "<br>";
 					// echo "<a href='../prof_set.php'> Proceed to homepage</a><br>"; //for testing
-=======
-					echo "<br>";
-					echo "<a href='faculty_home.php'> Proceed to homepage</a><br>"; //for testing
->>>>>>> a896738dcd83a3a72a2ec3225034b19e79d04cf3
 				}
 				if($role_id == 3)
 				{
 					echo "<h3> Student login </h3>";
 					$_SESSION["roleid"] = 3; // set session var role id
 					$_SESSION["userid"] = $user_id; //set session var user_id
-<<<<<<< HEAD
 					$_SESSION["first"] = $fn;
 					$_SESSION["last"] = $ln;
 
 					header('Location: ../student_attend.php');
 					//echo "<br>";
 					//echo "<a href='../student_attend.php'> Proceed to homepage</a><br>"; //for testing
-=======
-					echo "<br>";
-					echo "<a href='student_home.php'> Proceed to homepage</a><br>"; //for testing
->>>>>>> a896738dcd83a3a72a2ec3225034b19e79d04cf3
 				}
 			}
 

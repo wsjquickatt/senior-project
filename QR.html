@@ -38,7 +38,7 @@ session_start();
                      Retrive key from databse to this page so it can be used to compare with scanned value-->
                 <?php
                     include 'includes/functions.php';
-                    $x = getkey();
+                    
 
                     if ($_POST) {
                         $uid = $_SESSION["userid"];
@@ -47,9 +47,12 @@ session_start();
 
                         //go through array and assign values to varaible after each comma split
                         list($id, $course, $section) = explode(",", $_POST['course_id']);
-                        echo "The user id is $uid, the first name is $fnid, the last name is $lnid <br>";
-                        echo "The ID is $id, the course is $course, and the section is $section";
+                        //echo "The user id is $uid, the first name is $fnid, the last name is $lnid <br>";
+                        //echo "The ID is $id, the course is $course, and the section is $section";
+                        $_SESSION['courseid'] = $id;
                     }
+
+                    $x = getkey();
                 ?>
                 <input type="hidden" name="imgkey" id="imgkey"  value="<?php echo $x; ?>"/>
                 <input type="hidden" name="uid" id="uid"  value="<?php echo $uid; ?>"/>
@@ -57,7 +60,6 @@ session_start();
                 <input type="hidden" name="lnid" id="lnid"  value="<?php echo $lnid; ?>"/>
                 <input type="hidden" name="id" id="id"  value="<?php echo $id; ?>"/>
                 <p><span id="result" ></span></p>  
-
 
                 <div class="panel-body text-center">
                     <div class="col-md-6">
@@ -102,7 +104,7 @@ session_start();
                 </div>
                 <div class="panel-footer">
 
-<span style="color: #f92672">&lt;/html&gt;</span> -->
+<!-- <span style="color: #f92672">&lt;/html&gt;</span> --> -->
 
 </pre>
                 </div>
