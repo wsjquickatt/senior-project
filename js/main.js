@@ -16,8 +16,13 @@
         return el;
     }
     var txt = "innerText" in HTMLElement.prototype ? "innerText" : "textContent";
-    var test = "http://www.barcodesaustralia.com";
-    // var test = "hello world";
+
+    var qr_key =  Q('#imgkey').value; //reading key stored in database
+    var uid =  Q('#uid').value;
+    var fname =  Q('#fnid').value;
+    var lname =  Q('#lnid').value;
+    var cid =  Q('#id').value;
+
     var scannerLaser = Q(".scanner-laser"),
         imageUrl = new Q("#image-url"),
         play = Q("#play"),
@@ -53,12 +58,25 @@
                 }, 300);
             });
             scannedImg.src = res.imgData;
-            if( res.code === test){      //added if-else statement to match QR code
-                scannedQR[txt] = res.format + ": " + res.code;
+
+            //checking if scanned QR code matches key in db
+            if( res.code === qr_key){      
+                scannedQR[txt] = res.format + ": Scanned Code is VALID and Has Value: " + res.code;
+
+                        var ajaxurl = 'includes/attend_function.php',
+                        data = {uid:uid,fname:fname,lname:lname,cid:cid};
+                        $.post(ajaxurl, data, function(output){
+                            alert(output);
+                            $('#result').html(output);
+
+                            //window.location.replace("test_s_home.php");
+                        });
+
             }
             else{
-            scannedQR[txt] = res.format + ": invalid";
+            scannedQR[txt] = res.format + ": Scanned Code is INVALID. ";
             }
+            
         },
         getDevicesError: function(error) {
             var p, message = "Error detected with the following parameters:\n";
