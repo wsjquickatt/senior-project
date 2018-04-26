@@ -32,7 +32,7 @@
 //Get Session Variable for user id
 $_SESSION["userid"]=$user_id;
 $q = $_GET['q'];
-include "includes/databaseinfo2.php";
+include "includes/databaseinfo.php";
 $conn = mysqli_connect($server, $login, $password, $dbname);
 if (!$conn) {
     die('Could not connect: ' . mysqli_error($conn));
