@@ -96,7 +96,7 @@
 
 <?php
 
-include "includes/databaseinfo2.php";
+include "includes/databaseinfo.php";
 $conn = mysqli_connect($server, $login, $password, $dbname);
 // Check connection
 /*
