@@ -17,7 +17,7 @@ $(function(){
 </head>
 <body>
 <div id="header"></div>
-    <h2 class="black-text">Drop Course</h2>
+<h2 class="display-1 text-info black-text">Drop Course</h2>
 
 <div class="login_div">
    
