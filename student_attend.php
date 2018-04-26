@@ -90,22 +90,22 @@ session_start();
         	        <select name="course_id" required="required">
         			<option selected value="">---Please Select a Course---</option>
                     <!Need to change and query from STUDENT_COURSE TABLE>   
-        				<?php
-
-        				include "includes/databaseinfo.php";
-        				$conn = mysqli_connect($server, $login, $password, $dbname);
-
-
-        				$class_query = "select * from classes";
-        				$result = $conn->query($class_query);
-        				while($row = mysqli_fetch_array($result)){
-        				$c_id = $row['cid'];
-        				$course_id = $row['course_id'];
-        				$s_id = $row['section_id'];
-        				//submit multiple variable 
-        				echo "<option value='$c_id, $course_id, $s_id'> $course_id - $s_id</option>\n";
-        				}
-        				$conn->close();
+                        <?php
+                        include "includes/databaseinfo.php";
+                        $conn = mysqli_connect($server, $login, $password, $dbname);
+                        $user = $_SESSION['userid'];
+                        $class_query = "SELECT a.cid, a.course_id, a.section_id FROM classes a, user_course b WHERE a.cid=b.cid AND b.user_id='$user'
+                        ORDER BY a.course_id, a.section_id ASC ";
+                        $result = $conn->query($class_query);
+                        while($row = mysqli_fetch_array($result)){
+                        $c_id = $row['cid'];
+                        $course_id = $row['course_id'];
+                        $s_id = $row['section_id'];
+                        //submit cid
+                        echo "<option value='$c_id'> $course_id - $s_id</option>\n";
+                        }
+                        $conn->close();
+                        ?>n->close();
         				?>
         	                
         			</select>

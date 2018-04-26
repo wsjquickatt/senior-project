@@ -46,9 +46,10 @@ session_start();
                         $lnid = $_SESSION["last"];
 
                         //go through array and assign values to varaible after each comma split
-                        list($id, $course, $section) = explode(",", $_POST['course_id']);
+                        //list($id, $course, $section) = explode(",", $_POST['course_id']);
                         //echo "The user id is $uid, the first name is $fnid, the last name is $lnid <br>";
                         //echo "The ID is $id, the course is $course, and the section is $section";
+                        $id = $_POST['course_id'];
                         $_SESSION['courseid'] = $id;
                     }
 
