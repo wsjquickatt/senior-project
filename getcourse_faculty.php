@@ -45,32 +45,37 @@ mysqli_select_db($conn,"ajax_demo");
 FROM attendance
 LEFT JOIN classes ON attendance.cid = classes.cid where course_id = '".$q."'";
 */
-$sql = "SELECT attendance.user_id,attendance.firstname,attendance.lastname, attendance.cid, classes.course_id, classes.section_id, attendance.date,attendance.time,attendance.attend
-FROM attendance
-LEFT JOIN classes ON attendance.cid = classes.cid where course_id ='".$q."';";
+
+$sql = "SELECT * FROM attendance WHERE cid = '$q'";
 $result = mysqli_query($conn,$sql);
 
-echo "<table class='table table-bordered' responsive >
-<tr>
-<th>Id</th>
-<th>First Name</th>
-<th>Last Name</th>
-<th>Date</th>
-<th>Time</th>
-<th>Attend</th>
-</tr>";
-while($row = mysqli_fetch_array($result)) {
-    echo "<tr>";
-    echo "<td>" . $row['user_id'] . "</td>";
-    echo "<td>" . $row['firstname'] . "</td>";
-    echo "<td>" . $row['lastname'] . "</td>";
-    echo "<td>" . $row['date'] . "</td>";
-    echo "<td>" . $row['time'] . "</td>";
-    echo "<td>" . $row['attend'] . "</td>";
-    echo "</tr>";
+if (mysqli_num_rows($result)>0){
+    echo "<table class='table table-bordered' responsive >
+    <tr>
+    <th>Id</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Date</th>
+    <th>Time</th>
+    <th>Attend</th>
+    </tr>";
+    //printf("Error: %s\n", mysqli_error($conn));
+    while($row = mysqli_fetch_array($result)) {
+        echo "<tr>";
+        echo "<td>" . $row['user_id'] . "</td>";
+        echo "<td>" . $row['firstname'] . "</td>";
+        echo "<td>" . $row['lastname'] . "</td>";
+        echo "<td>" . $row['date'] . "</td>";
+        echo "<td>" . $row['time'] . "</td>";
+        echo "<td>" . $row['attend'] . "</td>";
+        echo "</tr>";
+    }
+    echo "</table>";
+    //mysqli_close($con);
 }
-echo "</table>";
-//mysqli_close($con);
+else
+    echo "<center>NO RECORDS FOUND FOR THIS COURSE.<br></center>";
+
 ?>
 </body>
 

@@ -91,32 +91,26 @@
 
 
 
-                    <select name="course_id" onchange="showCourse(this.value)" required="required" method="GET">
+<select name="course_id" onchange="showCourse(this.value)" required="required" method="GET">
 <option selected value="">---Please Select a Course---</option> 
 
-<?php
+                        <?php
 
-include "includes/databaseinfo.php";
-$conn = mysqli_connect($server, $login, $password, $dbname);
-// Check connection
-/*
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
-*/
+                        include "includes/databaseinfo.php";
+                        $conn = mysqli_connect($server, $login, $password, $dbname);
 
 
-$query2 = "select course_id from classes";
-$result2 = $conn->query($query2);
-while($row = mysqli_fetch_array($result2)){
-
-$course_id = $row['course_id'];
-//$cid = $row['cid'];
-
-echo "<option value='$course_id'> $course_id</option>\n";
-}
-$conn->close();
-?>
+                        $class_query = "select * from classes";
+                        $result = $conn->query($class_query);
+                        while($row = mysqli_fetch_array($result)){
+                        $c_id = $row['cid'];
+                        $course_id = $row['course_id'];
+                        $s_id = $row['section_id'];
+                        //submit cid
+                        echo "<option value='$c_id'> $course_id - $s_id</option>\n";
+                        }
+                        $conn->close();
+                        ?>
                 
 </select>
                     <br>
@@ -131,6 +125,7 @@ $conn->close();
 
 
                 <br>
+                 <div class="form"><p style="color:red;"><b>NOTE: Records that do NOT show are equivalent to "Absent".</b></p></div>
                 <div class="form" id="txtHint"><b>The class attendance will be listed here...</b></div>
 
 
