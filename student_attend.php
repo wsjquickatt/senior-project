@@ -118,8 +118,9 @@ session_start();
     </div>
 </div>
 
-<center><a href= "index.html">GO BACK TO LOGIN PAGE</a><br><br></center>
-<center><p>MAKE A QR CODE: <a href= "http://goqr.me/" target="_blank"> http://goqr.me/</a></p><br><br></center>
-
+<center>GO BACK TO <a href= "student_home.php">HOME PAGE</a><br><br></center>
+<center>CHANGE USER: <a href= "includes/quickatt_logout.php">Log Out</a><br><br></center>
+<!-- <center><p>MAKE A QR CODE: <a href= "http://goqr.me/" target="_blank"> http://goqr.me/</a></p><br><br></center>
+ -->
 </body>
 </html>
