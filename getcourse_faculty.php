@@ -2,27 +2,33 @@
 <html>
 <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
 <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/jmstyle.css" type="text/css" rel="stylesheet">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link href="css/jmstyle.css" type="text/css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 <head>
-<style>
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
 
-table, td, th {
-    border: 1px solid black;
-    padding: 5px;
-}
+        table,
+        td,
+        th {
+            border: 1px solid black;
+            padding: 5px;
+        }
 
-th {text-align: left;}
-</style>
+        th {
+            text-align: left;
+        }
+
+    </style>
 </head>
+
 <body>
 
-<?php
+    <?php
 $q = $_GET['q'];
 include "includes/databaseinfo2.php";
 $conn = mysqli_connect($server, $login, $password, $dbname);
@@ -67,4 +73,5 @@ echo "</table>";
 //mysqli_close($con);
 ?>
 </body>
+
 </html>
