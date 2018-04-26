@@ -43,8 +43,10 @@ session_start();
 					echo "<h3> Staff login </h3>";
 					$_SESSION["roleid"] = 2; // set session var role id
 					$_SESSION["userid"] = $user_id; //set session var user_id
-					echo "<br>";
-					echo "<a href='homepage.html'> Proceed to homepage</a><br>"; //for testing
+
+					header('Location: ../prof_set.php');
+					// echo "<br>";
+					// echo "<a href='../prof_set.php'> Proceed to homepage</a><br>"; //for testing
 				}
 				if($role_id == 3)
 				{
@@ -53,21 +55,25 @@ session_start();
 					$_SESSION["userid"] = $user_id; //set session var user_id
 					$_SESSION["first"] = $fn;
 					$_SESSION["last"] = $ln;
-					echo "<br>";
-					echo "<a href='student_attend.html'> Proceed to homepage</a><br>"; //for testing
+
+					header('Location: ../student_attend.php');
+					//echo "<br>";
+					//echo "<a href='../student_attend.php'> Proceed to homepage</a><br>"; //for testing
 				}
 			}
 
 			else
 			{
-				echo "Incorrect login or password<br>";
-				echo "<a href='https://quickatt.000webhostapp.com/'>Return to login</a><br>";
+				echo "<br>";
+				echo "<center>Incorrect login or password</center><br>";
+				echo "<center><a href='../index.html'>Return to login</a></center><br>";
 			}
 		}
 		else
 		{
-			echo "Incorrect login or password<br>";
-			echo "<a href='https://quickatt.000webhostapp.com/'>Return to login</a><br>";
+			echo "<br>";
+			echo "<center>Incorrect login or password</center><br>";
+			echo "<center><a href='../index.html'>Return to login</a></center><br>";
 		}
 
 
