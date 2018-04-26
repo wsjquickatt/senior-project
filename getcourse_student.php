@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
@@ -30,7 +33,7 @@
 
     <?php
 //Get Session Variable for user id
-$_SESSION["userid"]=$user_id;
+$user_id = $_SESSION['userid'];
 $q = $_GET['q'];
 include "includes/databaseinfo.php";
 $conn = mysqli_connect($server, $login, $password, $dbname);
@@ -42,36 +45,42 @@ mysqli_select_db($conn,"ajax_demo");
 
 // The variable must be changed  wher it selects the class which the option was chosen
 
-$sql="SELECT attendance.user_id,attendance.firstname,attendance.lastname, attendance.cid, classes.course_id, classes.section_id, attendance.date,attendance.time,attendance.attend
-FROM attendance
-LEFT JOIN classes ON attendance.cid = classes.cid where course_id ='".$q."' AND user_id='$user_id';";  
+// $sql="SELECT attendance.user_id,attendance.firstname,attendance.lastname, attendance.cid, classes.course_id, classes.section_id, attendance.date,attendance.time,attendance.attend
+// FROM attendance
+// LEFT JOIN classes ON attendance.cid = classes.cid where course_id ='".$q."' AND user_id='$user_id';";  
+
+$sql = "SELECT * FROM attendance WHERE cid = '$q' AND user_id='$user_id' ";
 $result = mysqli_query($conn,$sql);
 
 
-
-
-echo "<table class='table table-bordered' responsive >
-<tr>
-<th>Id</th>
-<th>First Name</th>
-<th>Last Name</th>
-<th>Date</th>
-<th>Time</th>
-<th>Attend</th>
-</tr>";
-while($row = mysqli_fetch_array($result)) {
-    echo "<tr>";
-    echo "<td>" . $row['user_id'] . "</td>";
-    echo "<td>" . $row['firstname'] . "</td>";
-    echo "<td>" . $row['lastname'] . "</td>";
-    echo "<td>" . $row['date'] . "</td>";
-    echo "<td>" . $row['time'] . "</td>";
-    echo "<td>" . $row['attend'] . "</td>";
-    echo "</tr>";
+if (mysqli_num_rows($result)>0){
+    echo "<table class='table table-bordered' responsive >
+    <tr>
+    <th>Id</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Date</th>
+    <th>Time</th>
+    <th>Attend</th>
+    </tr>";
+    while($row = mysqli_fetch_array($result)) {
+        echo "<tr>";
+        echo "<td>" . $row['user_id'] . "</td>";
+        echo "<td>" . $row['firstname'] . "</td>";
+        echo "<td>" . $row['lastname'] . "</td>";
+        echo "<td>" . $row['date'] . "</td>";
+        echo "<td>" . $row['time'] . "</td>";
+        echo "<td>" . $row['attend'] . "</td>";
+        echo "</tr>";
+    }
+    echo "</table>";
+    //mysqli_close($con);
 }
-echo "</table>";
-//mysqli_close($con);
+else
+    echo "<center>NO RECORDS FOUND FOR THIS COURSE.<br></center>";
+
 ?>
+
 </body>
 
 </html>

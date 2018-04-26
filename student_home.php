@@ -37,6 +37,9 @@ session_start();
         });
 
     </script>
+
+    <title>Student Home Page</title>
+
     </head>
 
     <body>
@@ -92,53 +95,32 @@ session_start();
 
                 <form action="" class="form-inline justify-content-center">
 
-
-
-
                     <select class="form " name="course_id" onchange="showUser(this.value)" required="required" method="post">
-<option selected value="">---Please Select a Course---</option> ...
+                    <option selected value="">---Please Select a Course---</option> ...
 
-<?php
-
-include "includes/databaseinfo.php";
-$conn = mysqli_connect($server, $login, $password, $dbname);
-// Check connection
-/*
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
-*/
-
-
-$query2 = "select course_id, cid from classes";
-$result2 = $conn->query($query2);
-while($row = mysqli_fetch_array($result2)){
-
-$course_id = $row['course_id'];
-$cid = $row['cid'];
-
-echo "<option value='$course_id'> $course_id</option>\n";
-}
-$conn->close();
-?>
+                        <?php
+                        include "includes/databaseinfo.php";
+                        $conn = mysqli_connect($server, $login, $password, $dbname);
+                        $user = $_SESSION['userid'];
+                        $class_query = "SELECT a.cid, a.course_id, a.section_id FROM classes a, user_course b WHERE a.cid=b.cid AND b.user_id='$user'
+                        ORDER BY a.course_id, a.section_id ASC ";
+                        $result = $conn->query($class_query);
+                        while($row = mysqli_fetch_array($result)){
+                        $c_id = $row['cid'];
+                        $course_id = $row['course_id'];
+                        $s_id = $row['section_id'];
+                        //submit cid
+                        echo "<option value='$c_id'> $course_id - $s_id</option>\n";
+                        }
+                        $conn->close();
+                        ?>
                 
-</select>
+                    </select>
                     <br>
-
-
-
                 </form>
-
-
-
-
-
 
                 <br>
                 <div class="form" id="txtHint"><b>The class attendance will be listed here...</b></div>
-
-
-
 
         </body>
 

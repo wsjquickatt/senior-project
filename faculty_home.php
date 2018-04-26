@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <html>
 <div class="container-fluid">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
@@ -33,6 +36,9 @@
         });
 
     </script>
+
+    <title>Instructor Home Page</title>
+
     </head>
 
     <body>
@@ -88,19 +94,15 @@
 
                 <form class="form-inline justify-content-center">
 
-
-
-
-<select name="course_id" onchange="showCourse(this.value)" required="required" method="GET">
-<option selected value="">---Please Select a Course---</option> 
-
+                    <select name="course_id" onchange="showCourse(this.value)" required="required" method="GET">
+                    <option selected value="">---Please Select a Course---</option> 
                         <?php
-
                         include "includes/databaseinfo.php";
                         $conn = mysqli_connect($server, $login, $password, $dbname);
 
-
-                        $class_query = "select * from classes";
+                        $user = $_SESSION['userid'];
+                        $class_query = "SELECT a.cid, a.course_id, a.section_id FROM classes a, user_course b WHERE a.cid=b.cid AND b.user_id='$user'
+                        ORDER BY a.course_id, a.section_id ASC";
                         $result = $conn->query($class_query);
                         while($row = mysqli_fetch_array($result)){
                         $c_id = $row['cid'];
@@ -111,25 +113,14 @@
                         }
                         $conn->close();
                         ?>
-                
-</select>
+            
+                    </select>
                     <br>
-
-
-
                 </form>
-
-
-
-
-
 
                 <br>
                  <div class="form"><p style="color:red;"><b>NOTE: Records that do NOT show are equivalent to "Absent".</b></p></div>
                 <div class="form" id="txtHint"><b>The class attendance will be listed here...</b></div>
-
-
-
 
         </body>
 

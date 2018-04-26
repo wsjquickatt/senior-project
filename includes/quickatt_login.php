@@ -44,7 +44,7 @@ session_start();
 					$_SESSION["roleid"] = 2; // set session var role id
 					$_SESSION["userid"] = $user_id; //set session var user_id
 
-					header('Location: ../prof_set.php');
+					header('Location: ../faculty_home.php');
 					// echo "<br>";
 					// echo "<a href='../prof_set.php'> Proceed to homepage</a><br>"; //for testing
 				}
@@ -56,7 +56,7 @@ session_start();
 					$_SESSION["first"] = $fn;
 					$_SESSION["last"] = $ln;
 
-					header('Location: ../student_attend.php');
+					header('Location: ../student_home.php');
 					//echo "<br>";
 					//echo "<a href='../student_attend.php'> Proceed to homepage</a><br>"; //for testing
 				}
