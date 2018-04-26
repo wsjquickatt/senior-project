@@ -1,4 +1,5 @@
 <?php 
+session_start();
 
 //if submit is clicked but the admin login is not checked
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && (isset($_POST['adminlogin']))) {	
@@ -30,7 +31,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && (isset($_POST['adminlogin']))) {
 				<h1><i class="fa fa-gear"></i> Password and Time Settings </h1>
 			</div>
 		</div>
-		<hr><br>
+		<hr>
+		<a href="faculty_home.php"><button style="float:left; background-color:#555555; color:white;">GO BACK TO HOME PAGE</button></a>
+		<br><br>
 	<div class="form-container">
 		<h2> Select Course</h2>	
 		<br>
@@ -41,21 +44,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && (isset($_POST['adminlogin']))) {
 			<p id="alert1" style="display:none;" class="alert alert-info text-center"><span id="result1" ></span></p>	
 			<div class="form-group">
 				Course:&nbsp;  <select style="width:85px;" name="course" id="course" > 
-					<?php
-						include "includes/databaseinfo.php";
-						$class_query = "select * from classes";
-						$result = $con->query($class_query);
-						while($row = mysqli_fetch_array($result)){
-						$c_id = $row['cid'];
-						$course_id = $row['course_id'];
-						$s_id = $row['section_id'];
-
-						//submit course id value, but display course name and section
-						//echo "<option value='$c_id, $course_id, $s_id'> $course_id - $s_id</option>\n";
-						echo "<option value='$c_id'> $course_id - $s_id</option>\n";
-						}
-						$con->close();
-					?>
+                        <?php
+                        include "includes/databaseinfo.php";
+                        $conn = mysqli_connect($server, $login, $password, $dbname);
+                        $user = $_SESSION['userid'];
+                        $class_query = "SELECT a.cid, a.course_id, a.section_id FROM classes a, user_course b WHERE a.cid=b.cid AND b.user_id='$user'
+                        ORDER BY a.course_id, a.section_id ASC ";
+                        $result = $conn->query($class_query);
+                        while($row = mysqli_fetch_array($result)){
+                        $c_id = $row['cid'];
+                        $course_id = $row['course_id'];
+                        $s_id = $row['section_id'];
+                        //submit cid
+                        echo "<option value='$c_id'> $course_id - $s_id</option>\n";
+                        }
+                        $conn->close();
+                        ?>n->close();
+        				?>
 				</select>
 			</div>
 			<br>
