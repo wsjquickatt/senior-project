@@ -1,80 +1,70 @@
 <?php
 session_start();
-?>
+include "databaseinfo.php";
 
-<?php
-	include "databaseinfo.php";
-	//$con = mysqli_connect($server, $login, $password, $dbname); //connect to DB
-	
-
-	$email = $_POST["email"];
+/*
+if(isset($_SESSION['login']) && $_SESSION['login'] == true){
+	header("location: success.php");
+}
+*/
+    $email = $_POST["email"];
 	$password = $_POST["password"];
-	$query1 = "SELECT q.* from id4888052_quickatt.users q where q.email = '$email';";
-	$query2 = "SELECT q.pwd from id4888052_quickatt.users q where q.pwd = '$password';";
+	$query = "SELECT q.* from id4888052_quickatt.users q where q.email = '$email' AND q.pwd = '$password';";
 
-	$result1 = mysqli_query($con, $query1);
-	$result2 = mysqli_query($con, $query2);
+	$result = mysqli_query($con, $query);
+	$row = mysqli_fetch_array($result);
 
-	$row1 = mysqli_fetch_array($result1);
-	$row2 = mysqli_fetch_array($result2);
-
-	$email_DB = $row1['email'];
-	$pwd_DB = $row2['pwd'];
-	$role_id = $row1['role_id'];
-	$user_id = $row1['user_id'];
-	$fn = $row1['firstname'];
-	$ln = $row1['lastname'];
-	
-		if($email_DB == $email)
+	if(mysqli_num_rows($result)>0)
+	{
+	$email_DB = $row['email'];
+	$password_DB = $row['pwd'];
+	$role_id = $row['role_id'];
+	$user_id = $row['user_id'];
+	}
+		if(mysqli_num_rows($result) > 0)
 		{
-			if($pwd_DB == $password)
+			if(($email == $email_DB) && ($password == $password_DB))
 			{
-				echo "Successful login!<br>";
+				//echo "Successful login!<br>";
+				$_SESSION['login'] = TRUE;
 				if($role_id == 1)
 				{
-					echo "<h3> Admin login </h3>";
-					$_SESSION["roleid"] = 1; // set session var role id
-					$_SESSION["userid"] = $user_id; //set session var user_id
-					echo "<br>";
-					echo "<a href='homepage.html'> Proceed to homepage</a><br>"; //for testing
+					echo "$email_DB / $email .. $password / $password_DB";
+					//echo "<h3> Admin login </h3>";
+					$_SESSION['roleid'] = 1; // set session var role id
+					$_SESSION['userid'] = $user_id; //set session var user_id
+					//echo "<br>";
+					header('location: ../admin_home.php');
 				}
 				if($role_id == 2)
 				{
-					echo "<h3> Staff login </h3>";
-					$_SESSION["roleid"] = 2; // set session var role id
-					$_SESSION["userid"] = $user_id; //set session var user_id
-
-					header('Location: ../faculty_home.php');
-					// echo "<br>";
-					// echo "<a href='../prof_set.php'> Proceed to homepage</a><br>"; //for testing
+						//echo "<h3> Instructor login </h3>";
+					$_SESSION['roleid'] = 2; // set session var role id
+					$_SESSION['userid'] = $user_id; //set session var user_id
+					//echo "<br>";
+					header('location: ../faculty_home.php');
 				}
 				if($role_id == 3)
 				{
-					echo "<h3> Student login </h3>";
-					$_SESSION["roleid"] = 3; // set session var role id
-					$_SESSION["userid"] = $user_id; //set session var user_id
-					$_SESSION["first"] = $fn;
-					$_SESSION["last"] = $ln;
-
-					header('Location: ../student_home.php');
+						//echo "<h3> Student login </h3>";
+					$_SESSION['roleid'] = 3; // set session var role id
+					$_SESSION['userid'] = $user_id; //set session var user_id
 					//echo "<br>";
-					//echo "<a href='../student_attend.php'> Proceed to homepage</a><br>"; //for testing
+					header('location: ../student_home.php'); //student homepage
 				}
 			}
-
 			else
 			{
-				echo "<br>";
-				echo "<center>Incorrect login or password</center><br>";
-				echo "<center><a href='../index.html'>Return to login</a></center><br>";
+				$_SESSION['login'] = false;
+				echo "Incorrect login or password<br>";
+				echo "<a href='https://quickatt.000webhostapp.com/'>Return to login</a><br>";
 			}
 		}
 		else
 		{
-			echo "<br>";
-			echo "<center>Incorrect login or password</center><br>";
-			echo "<center><a href='../index.html'>Return to login</a></center><br>";
+			$_SESSION['login'] = false;
+			echo "Incorrect login or password<br>";
+			echo "<a href='https://quickatt.000webhostapp.com/'>Return to login</a><br>";
 		}
-
-
+mysqli_close($con);
 ?>

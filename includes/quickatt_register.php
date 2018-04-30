@@ -1,12 +1,21 @@
-<?php
-session_start();
-?>
+<HTML>
+<HEAD>
+	<style>
+  .red-text {
+    color: red;
+      font-family: Lato, Monospace;
+      text-align: center;
+      font-size: 80px;
+  }
+</style>
+</HEAD>
+<BODY></BODY>
+</HTML>
 
 <?php
 	//register
 	
 	include "databaseinfo.php";
-	$con=mysqli_connect($server, $login, $password, $dbname);
 
 	$fname= $_POST['fname'];
 	$lname= $_POST['lname'];
@@ -15,21 +24,30 @@ session_start();
 	$role_id = $_POST['permission']; //student or teacher
 	$password= $_POST['password'];
 
-	//$course= $_POST['course'];
-	//$section= $_POST['section'];
-	
 	if($role_id == "Student")
-		$role_id = 3;
+		$role_id = 3; //student
 	else
-		$role_id = 2;
+		$role_id = 2; //faculty
 
 	$query="INSERT INTO id4888052_quickatt.users (user_id, role_id, firstname, lastname, email, pwd) VALUES ('$user_id', '$role_id', '$fname', '$lname', '$email', '$password');";
-	$result=mysqli_query($con, $query);
-	
-	if($result)
+	if(ctype_digit ($user_id)) // check if numberic value for userID
 	{
-		echo "You have been successfully registered!";
-		echo "<a href= 'homepage.html'>Return to homepage</a>";
+		$result=mysqli_query($con, $query);	
+		if($result)
+		{
+			echo "You have been successfully registered!";
+			echo "<a href= 'index.html'>Return to login</a>";
+		}
+		else
+			echo "There has been an error.";
 	}
+	else
+	{
+		echo "<h1 class='red-text'>Error!</h1>"; echo "<br>";
+		echo "User ID must be ALL numeric values!"; echo "<br>";
+		echo "<a href= 'new_user.html'>Go back</a>";
+	}
+	
 
+mysqli_close($con);
 ?>

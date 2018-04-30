@@ -1,32 +1,53 @@
 <?php
-sessions_start();
-?>
+session_start();
 
-<?php
+	if((!isset($_SESSION['login'])) || ($_SESSION['login'] == false))
+	{
+		header("location: index.html");
+	}
 //add course (student role ID = 3)
 include "databaseinfo.php";
-$con = mysqli_connect($server, $login, $password, $dbname); //connect to DB
 
-$courseid = $_POST["course_id"];
-$sectionid = $_POST["section_id"];
-$userid = $_SESSION["userid"];
+$course_id = $_POST['course_id'];
+$section_id= $_POST['section_id'];
+$userid = $_SESSION['userid']; //requires session start
 
-$query = "SELECT q.cid FROM id4888052_quickatt.classes q WHERE q.course_id = '$courseid' AND section_id = '$sectionid';";
+$query = "SELECT q.cid FROM id4888052_quickatt.classes q WHERE q.course_id = '$course_id' AND q.section_id = '$section_id';";
 $cidresult = mysqli_query($con, $query); //result is "cid"
 $row = mysqli_fetch_array($cidresult);
 $cid = $row["cid"]; //gets cid value
 
-$queryadd = "INSERT INTO id4888052_quickatt.student_courses VALUES('$userid','$cid');";
-$resultadd = mysqli_query($con, $queryadd);
+$queryadd = "INSERT INTO id4888052_quickatt.user_course(user_id, cid) VALUES('$userid','$cid');";
 
-if($resultadd)
+$querycheck= "SELECT q.* from id4888052_quickatt.user_course q WHERE cid = '$cid' AND user_id = '$userid';";
+$checkresult = mysqli_query($con, $querycheck);
+$rowcount = mysqli_num_rows($checkresult);
+
+if($rowcount>0)//checks query for multi rows (table is populated)
 {
-	echo "The class $courseid , $sectionid has been successfully added.";
+	echo "You are already registered for the course $course_id - $section_id!";
+	echo "<br> <a href='https://quickatt.000webhostapp.com/add_course.php'>Go back</a>";
+}
+elseif($rowcount==0) //checks for empty table
+{
+	$addresult = mysqli_query($con, $queryadd);
+
+	if($addresult)
+	{
+		echo "The class $course_id - $section_id has been successfully added to User: $userid.";
+		echo "<br> <a href='https://quickatt.000webhostapp.com/add_course.php'>Go back</a>";
+	}
+	else
+	{	
+		echo "An error has occured.";
+		echo "<br> <a href='https://quickatt.000webhostapp.com/add_course.php'>Go back</a>";
+	}
 }
 else
 {
-	echo "An error has occured.";
+	echo "An error has occurred.";
+	echo "<br> <a href='https://quickatt.000webhostapp.com/add_course.php'>Go back</a>";
 }
 
-
+mysqli_close($con);
 ?>
