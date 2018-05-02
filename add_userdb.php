@@ -35,7 +35,7 @@ $(function(){
     <br>
     <input class="form-control input-sm" type="text" required placeholder="First Name" name="fname" required="required"><br>
     <br>
-    <input class="form-control input-sm" type="text" required placeholder="Last Name" name="section_id" required="required"><br>
+    <input class="form-control input-sm" type="text" required placeholder="Last Name" name="lname" required="required"><br>
     <br>
     <input type="radio" name="Role" value="2" checked> Professor<br>
   <input type="radio" name="Role" value="3"> Students<br>
