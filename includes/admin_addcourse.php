@@ -12,16 +12,20 @@ include "databaseinfo.php";
 	$userid = $_SESSION['userid'];
 	$course_id = $_POST['courseid'];
 	$section_id = $_POST['sectionid'];
+	$cid = $_POST['cid'];
 
 	$querycheck = "SELECT q.* FROM id4888052_quickatt.classes q WHERE course_id = '$course_id' AND section_id = '$section_id';";
-	$queryadd = "INSERT INTO id4888052_quickatt.classes (course_id, section_id) VALUES ($course_id, $section_id);";
-	$resultcheck = mysqli_query($con, $query);
+	$resultcheck = mysqli_query($con, $querycheck);
+	$rowcount = mysqli_num_rows($resultcheck);
+
+	$queryadd = "INSERT INTO id4888052_quickatt.classes (cid, course_id, section_id) VALUES ($cid, $course_id, $section_id);";
+	
 
 	if($resultcheck)
 	{
-		if(mysqli_num_rows($resultcheck) > 0)
+		if($rowcount > 0)
 		{
-		exit("This course is already in the system!");
+		exit("This course, $course_id - $section_id is already in the system!");
 		}
 	}
 	else
@@ -29,6 +33,8 @@ include "databaseinfo.php";
 		$resultadd = mysqli_query($con, $queryadd);
 		if($resultadd)
 		{
+			if(mysqli_affected_rows($con))
+			{
 			echo "$course_id - $section_id was successfully added to Classes! <br>";
 			$query="SELECT q.* from id4888052_quickatt.classes q;";
 			$result=mysqli_query($con, $query);
@@ -43,7 +49,8 @@ include "databaseinfo.php";
 
 				echo "<TR><TD>$cid<TD>$course<TD>$section\n";
 			}	
-			echo "</TABLE>\n"		
+			echo "</TABLE>\n"
+			}		
 		}
 		else
 		{
