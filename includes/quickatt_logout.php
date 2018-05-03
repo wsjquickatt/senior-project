@@ -20,6 +20,7 @@
 include ("databaseinfo.php");
 	session_start();
 	session_unset();
+        print_r($_SESSION);
 	session_destroy();
 	mysqli_close($con);
 	//logout screen?

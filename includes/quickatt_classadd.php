@@ -11,13 +11,14 @@ include "databaseinfo.php";
 $course_id = $_POST['course_id'];
 $section_id= $_POST['section_id'];
 $userid = $_SESSION['userid']; //requires session start
+$roleid = $_SESSION['roleid'];
 
 $query = "SELECT q.cid FROM id4888052_quickatt.classes q WHERE q.course_id = '$course_id' AND q.section_id = '$section_id';";
 $cidresult = mysqli_query($con, $query); //result is "cid"
 $row = mysqli_fetch_array($cidresult);
 $cid = $row["cid"]; //gets cid value
 
-$queryadd = "INSERT INTO id4888052_quickatt.user_course(user_id, cid) VALUES('$userid','$cid');";
+$queryadd = "INSERT INTO id4888052_quickatt.user_course(user_id, cid, role_id) VALUES('$userid','$cid', '$roleid');";
 
 $querycheck= "SELECT q.* from id4888052_quickatt.user_course q WHERE cid = '$cid' AND user_id = '$userid';";
 $checkresult = mysqli_query($con, $querycheck);
@@ -45,7 +46,7 @@ elseif($rowcount==0) //checks for empty table
 }
 else
 {
-	echo "An error has occurred.";
+	echo "An error has occurred. The course is unavailable.";
 	echo "<br> <a href='https://quickatt.000webhostapp.com/add_course.php'>Go back</a>";
 }
 
