@@ -1,76 +1,44 @@
 <html>
-    <div class ="container-fluid">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+  <div class="container-fluid">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="css/jmstyle.css" type="text/css" rel="stylesheet">
+
+
+    <!-- bootstrap for table -->
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!--JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="bootstable.min.js"></script>
+
+    <script>
+        $('#makeEditable').SetEditable();
+        $('#makeEditable').SetEditable({
+            $addButton: $('#but_add')
+        });
+
+    </script>
    
-<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
-   
-<style>
-  .red-text {
-    color: red;
-      font-family: Lato, Monospace;
-      text-align: center;
-      font-size: 80px;
-  }
-.black-text {
-    color: black;
-  }
 
-  h1 {
-    font-family: Lato, Monospace;
-      text-align: center;
-      font-size: 80px;
-  }
+    <title>New User</title>
 
- h2 {
-    font-family: Lato, Monospace;
-      text-align: center;
-      font-size: 40px;
-  }
+    </head>
 
-  
-div.form
-{
-    display: block;
-    text-align: center;
-}
-form
-{
-    display: inline-block;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: left;
-}
-.login_div {
-    font-family: Lato, Monospace;
-    position: absolute;
-    text-align: center;
+    <body>
+        <div id="header"></div>
+        <!--Remaining section-->
 
-    width: 300px;
-    height: 300px;
-
-    /* Center form on page horizontally & vertically */
-    top: 50%;
-    left: 50%;
-    margin-top: -150px;
-    margin-left: -150px;
-}
-
-.login_form {
-    width: 300px;
-    height: 300px;
-    text-align: center;
-
-    background: white;
-    border-radius: 10px;
-
-    margin: 0;
-    padding: 0;
-}
 </style>
 <div class="container-fluid">
 
- <h1 class="red-text">QuickAtt</h1>
-    <h2 class="black-text">New User</h2>
+  <h2 class="display-1 text-info black-text">Register User</h2>
+    
 
 <div class="login_div">
    
@@ -92,7 +60,7 @@ form
     <label><input type="radio" name="permission" value = "Faculty"> Faculty</label>
     <br>
     <br>
-  <button type="submit">Submit</button>
+    <button class="btn btn-primary" type="submit">Submit</button> 
 
 </form>
      
