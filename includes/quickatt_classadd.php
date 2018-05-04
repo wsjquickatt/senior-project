@@ -12,6 +12,7 @@ $course_id = $_POST['course_id'];
 $section_id= $_POST['section_id'];
 $userid = $_SESSION['userid']; //requires session start
 $roleid = $_SESSION['roleid'];
+$fn = $_SESSION['first'];
 
 $query = "SELECT q.cid FROM id4888052_quickatt.classes q WHERE q.course_id = '$course_id' AND q.section_id = '$section_id';";
 $cidresult = mysqli_query($con, $query); //result is "cid"
@@ -27,7 +28,10 @@ $rowcount = mysqli_num_rows($checkresult);
 if($rowcount>0)//checks query for multi rows (table is populated)
 {
 	echo "You are already registered for the course $course_id - $section_id!";
-	echo "<br> <a href='https://quickatt.000webhostapp.com/add_course.php'>Go back</a>";
+	if($roleid == 3)
+		echo "<br> <a href='../add_course.php'>Go back</a>";
+	if($roleid == 2)
+		echo "<br> <a href='../register_FacultyForCourse.php'>Go back</a>";
 }
 elseif($rowcount==0) //checks for empty table
 {
@@ -35,19 +39,28 @@ elseif($rowcount==0) //checks for empty table
 
 	if($addresult)
 	{
-		echo "The class $course_id - $section_id has been successfully added to User: $userid.";
-		echo "<br> <a href='https://quickatt.000webhostapp.com/add_course.php'>Go back</a>";
+		echo "The class $course_id - $section_id has been successfully added to User: $fn.";
+		if($roleid == 3)
+			echo "<br> <a href='../add_course.php'>Go back</a>";
+		if($roleid == 2)
+			echo "<br> <a href='../register_FacultyForCourse.php'>Go back</a>";
 	}
 	else
 	{	
 		echo "An error has occured.";
-		echo "<br> <a href='https://quickatt.000webhostapp.com/add_course.php'>Go back</a>";
+		if($roleid == 3)
+			echo "<br> <a href='../add_course.php'>Go back</a>";
+		if($roleid == 2)
+			echo "<br> <a href='../register_FacultyForCourse.php'>Go back</a>";
 	}
 }
 else
 {
 	echo "An error has occurred. The course is unavailable.";
-	echo "<br> <a href='https://quickatt.000webhostapp.com/add_course.php'>Go back</a>";
+	if($roleid == 3)
+		echo "<br> <a href='../add_course.php'>Go back</a>";
+	if($roleid == 2)
+		echo "<br> <a href='../register_FacultyForCourse.php'>Go back</a>";
 }
 
 mysqli_close($con);

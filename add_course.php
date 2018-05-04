@@ -24,7 +24,7 @@ $(function(){
 <form class ="login_form" action="includes/quickatt_classadd.php" method = "post">
     
  
-    <input class="form-control input-sm" type="text" required placeholder="User ID #" name="userid"required=" required"><br>
+    <br>
     <br>
     <input class="form-control input-sm" type="text" required placeholder="Course ID" name="course_id" required="required"><br>
     <br>

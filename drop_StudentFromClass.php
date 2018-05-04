@@ -16,7 +16,7 @@ $user_id = $_SESSION['userid'];
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script> 
 $(function(){
-  $("#header").load("includes/header_admin.html"); 
+  $("#header").load("includes/header_faculty.html"); 
   //$("#footer").load("footer.html"); 
 });
 </script> 
@@ -31,10 +31,9 @@ $(function(){
 <!-- Add url to the action-->   
 <form class ="login_form" action="" method = "post">
     
- 
-<input class="form-control input-sm" type="text" required placeholder="Student User ID"  name="userid" required=" required"><br>
+    <br><br>
+    <input class="form-control input-sm" type="text" required placeholder="Student User ID"  name="userid" required=" required"><br>
     <br>
-  
     <input class="form-control input-sm" type="text" required placeholder="Course ID" name="course_id" required="required"><br>
     <br>
     <input class="form-control input-sm" type="text" required placeholder="Section ID" name="section_id" required="required"><br>

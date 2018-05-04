@@ -28,10 +28,10 @@ $(function(){
 <div class="login_div">
 
 <!-- Add url to the action-->
-<form class ="login_form" action="" method = "post">
+<form class ="login_form" action="includes/quickatt_classadd.php" method = "post">
     
  
-
+    <br><br>
     <input class="form-control input-sm" type="text" required placeholder="Course ID" name="course_id" required="required"><br>
     <br>
     <input class="form-control input-sm" type="text" required placeholder="Section ID" name="section_id" required="required"><br>

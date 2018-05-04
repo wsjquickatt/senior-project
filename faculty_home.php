@@ -31,7 +31,7 @@ session_start();
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script>
         $(function() {
-            $("#header").load("includes/header.html");
+            $("#header").load("includes/header_faculty.html");
             //$("#footer").load("footer.html"); 
         });
 
@@ -78,9 +78,9 @@ session_start();
             <div class="container-fluid">
                 <br>
                 <br>
+<!--                 <br>
                 <br>
-                <br>
-                <center>GO TO <a href= "prof_set.php">SETTINGS</a> PAGE</center>
+                <center>GO TO <a href= "prof_set.php">SETTINGS</a> PAGE</center> -->
                 <br>
                 <br>
                 <br>

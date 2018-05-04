@@ -8,6 +8,8 @@
         </style>
 </HEAD>
 <BODY>
+<br><br>
+<center><a href="../index.html"><button style="background-color:#555555; color:white;">Go to Home Page to Sign in</button></a></center>
 
 <table id="tbl_wrap"><tbody><tr><td id="td_wrap">
         <!-- START: Anything between these wrapper comment lines will be centered -->

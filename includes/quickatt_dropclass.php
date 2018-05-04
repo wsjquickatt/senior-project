@@ -15,6 +15,7 @@ $userid= $_SESSION['userid'];
 $roleid= $_SESSION['roleid'];
 $course_id= $_POST['course_id'];
 $section_id= $_POST['section_id'];
+$fn = $_SESSION['first'];
 
 
 $classlookup= "SELECT q.* FROM id4888052_quickatt.classes q WHERE course_id = '$course_id' AND section_id = '$section_id';";
@@ -33,13 +34,13 @@ if($roleid == 3) //student
 	{
 		if($checkrowcount < 1)
 		{
-			echo "You are not registered for this course!<a href='https://quickatt.000webhostapp.com/drop_course.php'> Try again.</a><br>";
+			echo "You are not registered for this course!<a href='../drop_course.php'> Try again.</a><br>";
 			exit();
 		}
 	}
 	else
 	{
-		echo "You are not registered for this course!<a href='https://quickatt.000webhostapp.com/drop_course.php'> Try again.</a><br>";
+		echo "You are not registered for this course!<a href='../drop_course.php'> Try again.</a><br>";
 		exit();
 	}	
 	$result = mysqli_query($con, $query);
@@ -47,19 +48,19 @@ if($roleid == 3) //student
 
 if($roleid == 2) //faculty
 {
-	$student_id= $_POST['student_id']; //get student ID from HTML form
-	$query= "DELETE FROM id4888052_quickatt.user_course WHERE user_id = '$student_id' AND cid = '$cid';"; //drop student from $cid
+	//$student_id= $_POST['student_id']; //get student ID from HTML form
+	$query= "DELETE FROM id4888052_quickatt.user_course WHERE user_id = '$userid' AND cid = '$cid';"; //drop faculty from $cid
 	if($checkresult)
 	{
 		if($checkrowcount < 1)
 		{
-			echo "You are not registered for this course!<a href='https://quickatt.000webhostapp.com/drop_course.php'> Try again.</a><br>";
+			echo "You are not registered for this course!<a href='../drop_FacultyFromCourse.php'> Try again.</a><br>";
 			exit();
 		}
 	}
 	else
 	{
-		echo "You are not registered for this course!<a href='https://quickatt.000webhostapp.com/drop_course.php'> Try again.</a><br>";
+		echo "You are not registered for this course!<a href='../drop_FacultyFromCourse.php'> Try again.</a><br>";
 		exit();
 	}	
 	$result = mysqli_query($con, $query);
@@ -70,11 +71,13 @@ if($result){
 	{
 		if($roleid == 2)
 		{
-			echo "The student, $student_id, has been removed from $course_id - $section_id.";
+			echo "The student, $fn, has been removed from $course_id - $section_id. <br>";
+			echo "<a href='../drop_FacultyFromCourse.php'> Go Back. </a><br>";
 		}
 		if($roleid == 3)
 		{
-			echo "The class: $course_id - $section_id ... has been removed from $userid 's course list.";
+			echo "The class: $course_id - $section_id ... has been removed from $fn 's course list. <br>";
+			echo "<a href='../drop_course.php'> Go Back. </a><br>";
 		}
 	}
 	else

@@ -20,6 +20,8 @@ if(isset($_SESSION['login']) && $_SESSION['login'] == true){
 	$password_DB = $row['pwd'];
 	$role_id = $row['role_id'];
 	$user_id = $row['user_id'];
+	$fn = $row['firstname'];
+	$ln = $row['lastname'];
 	}
 		if(mysqli_num_rows($result) > 0)
 		{
@@ -41,6 +43,7 @@ if(isset($_SESSION['login']) && $_SESSION['login'] == true){
 						//echo "<h3> Instructor login </h3>";
 					$_SESSION['roleid'] = 2; // set session var role id
 					$_SESSION['userid'] = $user_id; //set session var user_id
+					$_SESSION['first'] = $fn;
 					//echo "<br>";
 					header('location: ../faculty_home.php');
 				}
@@ -49,6 +52,8 @@ if(isset($_SESSION['login']) && $_SESSION['login'] == true){
 						//echo "<h3> Student login </h3>";
 					$_SESSION['roleid'] = 3; // set session var role id
 					$_SESSION['userid'] = $user_id; //set session var user_id
+					$_SESSION['first'] = $fn;
+					$_SESSION['last'] = $ln;
 					//echo "<br>";
 					header('location: ../student_home.php'); //student homepage
 				}
@@ -57,14 +62,14 @@ if(isset($_SESSION['login']) && $_SESSION['login'] == true){
 			{
 				$_SESSION['login'] = false;
 				echo "Incorrect login or password<br>";
-				echo "<a href='https://quickatt.000webhostapp.com/'>Return to login</a><br>";
+				echo "<a href='../index.html'>Return to login</a><br>";
 			}
 		}
 		else
 		{
 			$_SESSION['login'] = false;
 			echo "Incorrect login or password<br>";
-			echo "<a href='https://quickatt.000webhostapp.com/'>Return to login</a><br>";
+			echo "<a href='../index.html'>Return to login</a><br>";
 		}
 mysqli_close($con);
 ?>

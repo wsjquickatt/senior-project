@@ -5,6 +5,7 @@
  * email: atandrastoth@gmail.com
  * Licensed under the MIT license
  */
+
 (function(undefined) {
     "use strict";
 
@@ -16,7 +17,8 @@
         return el;
     }
     var txt = "innerText" in HTMLElement.prototype ? "innerText" : "textContent";
-
+    //var test = "http://www.barcodesaustralia.com";
+    //var test = "hello world";
     var qr_key =  Q('#imgkey').value; //reading key stored in database
     var uid =  Q('#uid').value;
     var fname =  Q('#fnid').value;
@@ -60,23 +62,22 @@
             scannedImg.src = res.imgData;
 
             //checking if scanned QR code matches key in db
-            if( res.code === qr_key){      
-                scannedQR[txt] = res.format + ": Scanned Code is VALID and Has Value: " + res.code;
+            if( res.code === qr_key){  
+                scannedQR[txt] = res.format + ": Scanned Code is VALID. ";    
+                //scannedQR[txt] = res.format + ": Scanned Code is VALID and Has Value: " + res.code;
 
                         var ajaxurl = 'includes/attend_function.php',
                         data = {uid:uid,fname:fname,lname:lname,cid:cid};
                         $.post(ajaxurl, data, function(output){
                             alert(output);
-                            $('#result').html(output);
-
-                            //window.location.replace("test_s_home.php");
+                            //$('#result').html(output);
+                            window.location.replace("student_attend.php");
                         });
 
             }
             else{
             scannedQR[txt] = res.format + ": Scanned Code is INVALID. ";
             }
-            
         },
         getDevicesError: function(error) {
             var p, message = "Error detected with the following parameters:\n";
