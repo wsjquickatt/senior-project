@@ -1,0 +1,86 @@
+<?php
+session_start();
+?>
+<!DOCTYPE html>
+<html>
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/jmstyle.css" type="text/css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<head>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table,
+        td,
+        th {
+            border: 1px solid black;
+            padding: 5px;
+        }
+
+        th {
+            text-align: left;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <?php
+//Get Session Variable for user id
+$user_id = $_SESSION['userid'];
+$q = $_GET['q'];
+include "includes/databaseinfo.php";
+$conn = mysqli_connect($server, $login, $password, $dbname);
+if (!$conn) {
+    die('Could not connect: ' . mysqli_error($conn));
+}
+
+mysqli_select_db($conn,"ajax_demo");
+
+// The variable must be changed  wher it selects the class which the option was chosen
+
+// $sql="SELECT attendance.user_id,attendance.firstname,attendance.lastname, attendance.cid, classes.course_id, classes.section_id, attendance.date,attendance.time,attendance.attend
+// FROM attendance
+// LEFT JOIN classes ON attendance.cid = classes.cid where course_id ='".$q."' AND user_id='$user_id';";  
+
+$sql = "SELECT * FROM users WHERE user_id = '$q' ";
+$result = mysqli_query($conn,$sql);
+
+
+if (mysqli_num_rows($result)>0){
+    echo "<table class='table table-bordered' responsive >
+    <tr>
+    <th>Id</th>
+    <th>Role Id</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Email</th>
+    <th>Password</th>
+    </tr>";
+    while($row = mysqli_fetch_array($result)) {
+        echo "<tr>";
+        echo "<td>" . $row['user_id'] . "</td>";
+        echo "<td>" . $row['role_id'] . "</td>";
+        echo "<td>" . $row['firstname'] . "</td>";
+        echo "<td>" . $row['lastname'] . "</td>";
+        echo "<td>" . $row['email'] . "</td>";
+        echo "<td>" . $row['pwd'] . "</td>";
+        echo "</tr>";
+    }
+    echo "</table>";
+    //mysqli_close($con);
+}
+else
+    echo "<center>NO RECORDS FOUND FOR THIS COURSE.<br></center>";
+
+?>
+
+</body>
+
+</html>
