@@ -1,3 +1,23 @@
+<html>
+    <div class ="container-fluid">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+   
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+   
+<link href="css/jmstyle.css" type="text/css" rel="stylesheet">
+ 
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script> 
+$(function(){
+  $("#header").load("includes/header_admin.html"); 
+  //$("#footer").load("footer.html"); 
+});
+</script> 
+</head>
+<body>
+<div id="header"></div>
+<h2 class="display-1 text-info black-text">Drop Course</h2>
+
 <?php
 session_start();
 	if((!isset($_SESSION['login'])) || ($_SESSION['login'] == false))
@@ -71,7 +91,7 @@ if($result){
 	{
 		if($roleid == 2)
 		{
-			echo "The student, $fn, has been removed from $course_id - $section_id. <br>";
+			echo "$fn has been removed from $course_id - $section_id. <br>";
 			echo "<a href='../drop_FacultyFromCourse.php'> Go Back. </a><br>";
 		}
 		if($roleid == 3)
