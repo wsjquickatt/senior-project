@@ -16,9 +16,11 @@ $(function(){
 </head>
 <body>
 <div id="header"></div>
-<h2 class="display-1 text-info black-text">View All Users</h2>
+<h2 class="display-1 text-info black-text">View All Courses</h2>
 
 <?php
+//view all courses (ADMIN)
+
 session_start();
 
 	if((!isset($_SESSION['login'])) || ($_SESSION['login'] == false))
@@ -30,25 +32,22 @@ session_start();
 
 	$role_id=$_SESSION['roleid'];
 	
-	$query = "SELECT q.* from id4888052_quickatt.users q;";
+	$query = "SELECT q.* from id4888052_quickatt.classes q;";
 	$result = mysqli_query($con, $query);
 
 	echo "<TABLE border=1>\n";
-	echo "<TR><TD><TD>User ID<TD>Role ID<TD>First Name<TD>Last Name<TD>Email<TD>Password\n";
-	$count = 1;
+	echo "<TR><TD>CID<TD>Course Name<TD>Section\n";
 	while($row = mysqli_fetch_array($result)) //gets "user_id" 
 	{
-			$user_id=$row['user_id'];
-			$role_id_DB=$row['role_id'];
-			$fname=$row['firstname'];
-			$lname=$row['lastname'];
-			$email=$row['email'];
-			$password=$row['pwd'];
+			$cid=$row['cid'];
+			$coursename=$row['course_id'];
+			$section=$row['section_id'];
 
-			echo "<TR><TD>$count<TD>$user_id<TD>$role_id_DB<TD>$fname<TD>$lname<TD>$email<TD>$password\n";
-			$count = $count + 1; //increment counter
+			echo "<TR><TD>$cid<TD>$coursename<TD>$section\n";
 	}
 	echo"</TABLE>\n";
 	
 mysqli_close();
+
+
 ?>
