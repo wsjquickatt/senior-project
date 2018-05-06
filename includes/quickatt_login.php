@@ -31,8 +31,6 @@ if(isset($_SESSION['login']) && $_SESSION['login'] == true){
 				$_SESSION['login'] = TRUE;
 				if($role_id == 1)
 				{
-					echo "$email_DB / $email .. $password / $password_DB";
-					//echo "<h3> Admin login </h3>";
 					$_SESSION['roleid'] = 1; // set session var role id
 					$_SESSION['userid'] = $user_id; //set session var user_id
 					//echo "<br>";
