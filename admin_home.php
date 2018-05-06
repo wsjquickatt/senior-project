@@ -115,7 +115,7 @@ session_start();
 
                 <br>
                  
-                <div class="form" style="color:red" id="txtHint"><b>The class attendance will be listed here...</b></div>
+                <div class="form" style="color:red" id="txtHint"><b>Users will be listed here...</b></div>
 
         </body>
 
