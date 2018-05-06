@@ -21,16 +21,16 @@ session_start();
 
 	$resultcheck = mysqli_query($con, $querycheck);
 	$rowcount = mysqli_num_rows($resultcheck);
-	if($rowcount<1)//result table IS empty
+	if($rowcount>0)//result table IS NOT empty
+	{
+		$resultdelete = mysqli_query($con, $querydelete);
+		echo "User: $user_id, $fname $lname has been successfully dropped from QuickAtt records. <br>";
+		echo "<br> <a href='../drop_userdb.php'> Go back. </a>";
+	}
+	else//if result table IS empty
 	{
 		echo "This user is not in QuickAtt records!<br>";
-		echo "<a href= ../drop_userdb.php>Go back. </a>";
-	}
-	else//if result table IS NOT empty
-	{
-		$resultadd = mysqli_query($con, $querydelete);
-		echo "User: $user_id, $fname $lname has been successfully dropped from QuickAtt records. <br>";
-		echo "<a href= ../admin_home.php>Go back. </a>";
+		echo "<a href='../drop_userdb.php'> Go back. </a>";
 	}
 
 mysqli_close();

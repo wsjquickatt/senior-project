@@ -11,50 +11,60 @@ session_start();
 	
 	$roleid = $_SESSION['roleid'];
 	$userid = $_SESSION['userid'];
-	$course_id = $_POST['courseid'];
-	$section_id = $_POST['sectionid'];
+	
+	$course_id = $_POST['course_id'];
+	$section_id = $_POST['section_id'];
 	$cid = $_POST['cid'];
 
 	$querycheck = "SELECT q.* FROM id4888052_quickatt.classes q WHERE course_id = '$course_id' AND section_id = '$section_id';";
 	$resultcheck = mysqli_query($con, $querycheck);
 	$rowcount = mysqli_num_rows($resultcheck);
 
-	$querydelete= "DELETE FROM id4888052_quickatt.users WHERE user_id = '$user_id';";
-	if($resultcheck)
+	$querycheck2 = "SELECT q.* FROM id4888052_quickatt.classes q WHERE cid = '$cid';";
+	$resultcheck2 = mysqli_query($con, $querycheck2);
+	$rowcount2 = mysqli_num_rows($resultcheck2);
+	
+	$querydelete= "DELETE FROM id4888052_quickatt.classes WHERE course_id = '$course_id' AND section_id = '$section_id' AND cid = '$cid';";
+
+	if($rowcount == 0)
 	{
-		if($rowcount == 0)
+		echo "The course does not yet exist.";
+		echo "<a href='../drop_classdb.php'> Go back </a>" . "or" . "<a href='../add_classdb.php'> Add course.</a>";
+	}
+	elseif($rowcount2 == 0)
+	{
+		echo "The course does not yet exist.";
+		echo "<a href='../drop_classdb.php'> Go back </a>" . "or" . "<a href='../add_classdb.php'> Add course.</a>";
+	}
+	else
+	{
+		$resultdelete = mysqli_query($con, $querydelete);
+		if($resultdelete)
 		{
-			exit("The course does not yet exist.");
-		}
-		elseif($rowcount > 0)
-		{
-			$resultdelete = mysqli_query($con, $querydelete);
-			if($resultdelete)
+			if(mysqli_affected_rows($con))
 			{
-				if(mysqli_affected_rows($con))
-				{
 				echo "$course_id - $section_id was successfully deleted from Classes! <br>";
 				$query="SELECT q.* from id4888052_quickatt.classes q;";
 				$result=mysqli_query($con, $query);
 			
 				echo "<TABLE border=1>\n";
 				echo "<TR><TD>CID<TD>Course id<TD>Section ID\n";
-				while($row=mysqli_fetch_array($result))
-				{
-					$course=$row['course_id'];
-					$section=$row['section_id'];
-					$cid=['cid'];
-
-					echo "<TR><TD>$cid<TD>$course<TD>$section\n";
-				}	
-				echo "</TABLE>\n"
-				}		
-			}
-			else
+			while($row=mysqli_fetch_array($result))
 			{
-				exit("An error has occurred.");
-			}
-		}
-	}
+				$course=$row['course_id'];
+				$section=$row['section_id'];
+				$cid=$row['cid'];
 
+				echo "<TR><TD>$cid<TD>$course<TD>$section\n";
+			}	
+				echo "</TABLE>\n";
+				echo "<br> <a href='../drop_classdb.php'> Go back. </a>";
+			}		
+		}
+		else
+	    {
+		    echo "An error has occurred.<br>";
+		    echo "<br> <a href='../drop_classdb.php'> Go back. </a>";
+	    }
+	}
 ?>
