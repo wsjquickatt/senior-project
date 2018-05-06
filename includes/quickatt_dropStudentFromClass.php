@@ -1,3 +1,23 @@
+<html>
+    <div class ="container-fluid">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+   
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+   
+<link href="css/jmstyle.css" type="text/css" rel="stylesheet">
+ 
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script> 
+$(function(){
+  $("#header").load("includes/header_admin.html"); 
+  //$("#footer").load("footer.html"); 
+});
+</script> 
+</head>
+<body>
+<div id="header"></div>
+<h2 class="display-1 text-info black-text">Drop Student from Course</h2>
+
 <?php
 session_start();
 	if((!isset($_SESSION['login'])) || ($_SESSION['login'] == false))
