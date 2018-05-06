@@ -36,7 +36,7 @@ $(function(){
     <br>
     <input type="radio" name="role_id" value="2" checked> Professor<br>
   <input type="radio" name="role_id" value="3"> Students<br>
-  <button class="btn btn-primary" type="submit">Submit</button>
+  <button class="btn btn-primary btn-lg" type="submit">Submit</button>
 
 </form>
      

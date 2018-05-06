@@ -38,7 +38,7 @@ $(function(){
     <input class="form-control input-sm" type="text" required placeholder="Section ID" name="section_id" required="required"><br>
     <br>
     
-  <button class="btn btn-primary" type="submit">Submit</button>
+  <button class="btn btn-primary btn-lg" type="submit">Submit</button>
 
 </form>
      
