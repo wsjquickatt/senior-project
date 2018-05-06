@@ -37,9 +37,9 @@ $(function(){
     <br>
     <input class="form-control input-sm" type="text" required placeholder="Last Name" name="lname" required="required"><br>
     <br>
-    <input type="radio" name="Role" value="2" checked> Professor<br>
-  <input type="radio" name="Role" value="3"> Students<br>
-  <button class="btn btn-primary" type="submit">Submit</button>
+    <input type="radio"  name="Role" value="2" checked> Professor<br>
+  <input type="radio"  name="Role" value="3"> Students<br>
+  <button class="btn btn-primary btn-lg" type="submit">Submit</button>
 
 </form>
      
