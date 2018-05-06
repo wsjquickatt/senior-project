@@ -77,8 +77,6 @@ session_start();
                 <br>
                 <br>
                 <br>
-                <center>GO TO <a href= "prof_set.php">SETTINGS</a> PAGE</center>
-                <br>
                 <br>
                 <br>
                 <br>

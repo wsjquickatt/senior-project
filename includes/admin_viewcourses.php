@@ -47,7 +47,7 @@ session_start();
 	}
 	echo"</TABLE>\n";
 	
-mysqli_close();
+mysqli_close($con);
 
 
 ?>
