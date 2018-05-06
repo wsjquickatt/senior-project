@@ -11,8 +11,8 @@ session_start();
 	
 	$roleid = $_SESSION['roleid'];
 	$userid = $_SESSION['userid'];
-	$course_id = $_POST['courseid'];
-	$section_id = $_POST['sectionid'];
+	$course_id = $_POST['course_id'];
+	$section_id = $_POST['section_id'];
 	$cid = $_POST['cid'];
 
 	$querycheck = "SELECT q.* FROM id4888052_quickatt.classes q WHERE course_id = '$course_id' AND section_id = '$section_id';";
@@ -48,11 +48,13 @@ session_start();
 					echo "<TR><TD>$cid<TD>$course<TD>$section\n";
 				}	
 				echo "</TABLE>\n"
+				echo "<br> <a href='../dropclassdb.php'> Go back. </a>";
 				}		
 			}
 			else
 			{
-				exit("An error has occurred.");
+				echo "An error has occurred.";
+				echo "<a href='../dropclassdb.php'> Go back.</a>";
 			}
 		}
 	}
