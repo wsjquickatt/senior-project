@@ -1,16 +1,22 @@
-<HTML>
-<HEAD>
-	<style>
-  .red-text {
-    color: red;
-      font-family: Lato, Monospace;
-      text-align: center;
-      font-size: 80px;
-  }
-</style>
-</HEAD>
-<BODY></BODY>
-</HTML>
+<html>
+    <div class ="container-fluid">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+   
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+   
+<link href="css/jmstyle.css" type="text/css" rel="stylesheet">
+ 
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script> 
+$(function(){
+  $("#header").load("includes/header_admin.html"); 
+  //$("#footer").load("footer.html"); 
+});
+</script> 
+</head>
+<body>
+<div id="header"></div>
+<h2 class="display-1 text-info black-text">Register New User</h2>
 
 <?php
 	//register
@@ -53,7 +59,7 @@
 	    }
 	    else
 	    {
-		    echo "<h1 class='red-text'>Error!</h1>"; echo "<br>";
+		    echo "Error!"; echo "<br>";
 		    echo "(2)User ID must be ALL numeric values!"; echo "<br>";
 		    echo "<a href= '../new_user.html'>Go back</a>";
 	    }
