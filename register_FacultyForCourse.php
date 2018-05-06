@@ -23,7 +23,7 @@ $(function(){
 </head>
 <body>
 <div id="header"></div>
-<h2 class="display-1 text-info black-text">Register Faculty For Couser</h2>
+<h2 class="display-1 text-info black-text">Register Faculty For Course</h2>
 
 <div class="login_div">
 
