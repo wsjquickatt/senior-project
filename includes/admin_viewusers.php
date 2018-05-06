@@ -28,6 +28,7 @@ session_start();
 			echo "<TR><TD>$count<$user_id<TD>$role_id_DB<TD>$fname<TD>$lname<TD>$email<TD>$password\n";
 			$count = $count + 1; //increment counter
 	}
-				echo"</TABLE>\n";
-
+	echo"</TABLE>\n";
+	
+mysqli_close();
 ?>
