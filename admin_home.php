@@ -25,16 +25,14 @@ session_start();
         $('#makeEditable').SetEditable({
             $addButton: $('#but_add')
         });
-
     </script>
     <!--Previous code starts here-->
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script>
         $(function() {
-            $("#header").load("includes/header.html");
+            $("#header").load("includes/header_admin.html");
             //$("#footer").load("footer.html"); 
         });
-
     </script>
 
     <title>Admin Home Page</title>
@@ -69,7 +67,6 @@ session_start();
                         xmlhttp.send();
                     }
                 }
-
             </script>
         </head>
 
@@ -99,7 +96,6 @@ session_start();
                         <?php
                         include "includes/databaseinfo.php";
                         $conn = mysqli_connect($server, $login, $password, $dbname);
-
                         $user = $_SESSION['userid'];
                         $class_query = "SELECT user_id,firstname, lastname from users;";
                         $result = $conn->query($class_query);
